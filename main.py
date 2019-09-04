@@ -6,12 +6,8 @@ import tornado.ioloop
 
 base_url = 'https://192.86.33.94:19443/cusregapi/AccountNo?acctno=100000001001'
 headers = {'Content-Type': 'application/json'}
-params = {
-    'jql': 'project = EXM AND resolution is not EMPTY',
-    'expand': 'changelog',
-}
 
-req = requests.get(base_url, headers=headers, params=params, auth=('ibmuser', 'ibmuser'), verify=False)
+
 
 # print(req.content)
 
@@ -23,11 +19,13 @@ port = int(os.getenv('PORT', 8000))
 
 class basicRequestHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write(req.content)
+        req = requests.get(base_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
+        self.write("main")
 
 class resourceRequestHandler(tornado.web.RequestHandler):
     def get(self, id):
-        self.write("Querying tweet with id " + req.content)
+        req = requests.get(base_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
+        self.write("Querying tweet with id " + str(req.content))
 
 class queryStringRequestHandler(tornado.web.RequestHandler):
     def get(self):

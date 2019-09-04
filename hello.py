@@ -52,7 +52,7 @@ port = int(os.getenv('PORT', 8000))
 
 @app.route('/')
 def root():
-    return "req.content"
+    return "hellopy"
 
 
 # /* Endpoint to greet and add a new visitor to database.
