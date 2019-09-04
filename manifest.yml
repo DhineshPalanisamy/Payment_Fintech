@@ -1,5 +1,5 @@
 ---
 applications:
- - name: Payment gateway
+ - name: Payment-gateway
    random-route: true
-   memory: 128M
+   memory: 256M

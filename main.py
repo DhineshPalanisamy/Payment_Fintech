@@ -13,7 +13,7 @@ params = {
 
 req = requests.get(base_url, headers=headers, params=params, auth=('ibmuser', 'ibmuser'), verify=False)
 
-print(req.content)
+# print(req.content)
 
 # app = Flask(__name__, static_url_path='')
 
@@ -23,7 +23,7 @@ port = int(os.getenv('PORT', 8000))
 
 class basicRequestHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello, world!!!!!!")
+        self.write(req.content)
 
 class resourceRequestHandler(tornado.web.RequestHandler):
     def get(self, id):
