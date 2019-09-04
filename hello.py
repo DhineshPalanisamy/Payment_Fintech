@@ -3,6 +3,18 @@ from flask import Flask, render_template, request, jsonify
 import atexit
 import os
 import json
+import requests
+
+base_url = 'https://192.86.33.94:19443/cusregapi/AccountNo?acctno=100000001001'
+headers = {'Content-Type': 'application/json'}
+params = {
+    'jql': 'project = EXM AND resolution is not EMPTY',
+    'expand': 'changelog',
+}
+
+req = requests.get(base_url, headers=headers, params=params, auth=('ibmuser', 'ibmuser'), verify=False)
+
+print(req.content)
 
 app = Flask(__name__, static_url_path='')
 
@@ -40,7 +52,8 @@ port = int(os.getenv('PORT', 8000))
 
 @app.route('/')
 def root():
-    return app.send_static_file('index.html')
+    return req.content
+
 
 # /* Endpoint to greet and add a new visitor to database.
 # * Send a POST request to localhost:8000/api/visitors with body
