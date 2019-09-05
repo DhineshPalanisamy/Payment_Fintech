@@ -19,8 +19,18 @@ port = int(os.getenv('PORT', 8000))
 
 class basicRequestHandler(tornado.web.RequestHandler):
     def get(self):
-        req = requests.get(base_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
-        self.write("main")
+        #req = requests.get(base_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
+        # self.write("main_modified")
+        self.render("static/landing.html")
+
+    def post(self):
+        self.set_header("Content-Type", "text/plain")
+        self.write("You wrote " + self.get_body_argument("accnt"))
+
+class postedForm(tornado.web.RequestHandler):
+    def post(self):
+        self.set_header("Content-Type", "text/plain")
+        self.write("You wrote " + self.get_body_argument("accnt"))
 
 class resourceRequestHandler(tornado.web.RequestHandler):
     def get(self, id):
@@ -43,7 +53,8 @@ if __name__ == "__main__":
         (r"/", basicRequestHandler),
         (r"/blog", staticRequestHandler),
         (r"/isEven", queryStringRequestHandler),
-        (r"/tweet/([0-9]+)", resourceRequestHandler)
+        (r"/tweet/([0-9]+)", resourceRequestHandler),
+        (r"/postedform", postedForm)
     ])
 
     app.listen(port)
