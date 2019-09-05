@@ -21,7 +21,7 @@ class basicRequestHandler(tornado.web.RequestHandler):
     def get(self):
         #req = requests.get(base_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
         # self.write("main_modified")
-        self.render("static/landing.html")
+        self.render("static/register.html")
 
     def post(self):
         self.set_header("Content-Type", "text/plain")
@@ -29,8 +29,11 @@ class basicRequestHandler(tornado.web.RequestHandler):
 
 class postedForm(tornado.web.RequestHandler):
     def post(self):
-        self.set_header("Content-Type", "text/plain")
-        self.write("You wrote " + self.get_body_argument("accnt"))
+        base_url = 'https://192.86.33.94:19443/cusregapi/AccountNo?acctno='
+        # 100000001001 is the only working answer
+        end_url= base_url+str(self.get_body_argument("accnt"))
+        req = requests.get(end_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
+        self.render("static/genericresp.html",msg=str(req.content))
 
 class resourceRequestHandler(tornado.web.RequestHandler):
     def get(self, id):
@@ -46,7 +49,7 @@ class queryStringRequestHandler(tornado.web.RequestHandler):
 
 class staticRequestHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("index.html")
+        self.render("static/genericresp.html",msg="Something generic")
 
 if __name__ == "__main__":
     app = tornado.web.Application([
