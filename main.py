@@ -3,6 +3,7 @@ import json
 import requests
 import tornado.web
 import tornado.ioloop
+import tornado.autoreload
 
 base_url = 'https://192.86.33.94:19443/cusregapi/AccountNo?acctno=100000001001'
 headers = {'Content-Type': 'application/json'}
@@ -23,17 +24,14 @@ class basicRequestHandler(tornado.web.RequestHandler):
         # self.write("main_modified")
         self.render("static/register.html")
 
-    def post(self):
-        self.set_header("Content-Type", "text/plain")
-        self.write("You wrote " + self.get_body_argument("accnt"))
-
 class postedForm(tornado.web.RequestHandler):
     def post(self):
         base_url = 'https://192.86.33.94:19443/cusregapi/AccountNo?acctno='
         # 100000001001 is the only working answer
         end_url= base_url+str(self.get_body_argument("accnt"))
         req = requests.get(end_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
-        self.render("static/genericresp.html",msg=str(req.content))
+        json_out = req.json()
+        self.render("static/genericresp.html",msg=json_out['WS_MESSAGE']['WS_MESSAGE'])
 
 class resourceRequestHandler(tornado.web.RequestHandler):
     def get(self, id):
@@ -61,5 +59,7 @@ if __name__ == "__main__":
     ])
 
     app.listen(port)
+    # TODO remove in prod
+    # tornado.autoreload.start()
     print("I'm listening on port specified")
     tornado.ioloop.IOLoop.current().start()
