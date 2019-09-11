@@ -1,93 +1,201 @@
 <!DOCTYPE html>
+
   <html>
+
     <head>
+
       <!--Import Google Icon Font-->
+
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
       <!--Import materialize.css-->
+
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+
   <!--Let browser know website is optimized for mobile-->
+
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 	<title> Core Banking Solutions</title>
+
     </head>
 
+
     <body id="home" class="scrollspy">
+
 	
 	<div class="navbar-fixed">
-		<nav class="teal">
+
+		<nav class="light-blue lighten-1">
+
 			<div class="container">
+
 				<div class="nav-wrapper">
-					<a href="#" class="brand-logo"> Core Banking Solutions </a>
-					<a href="#" data-target="mobile-nav" class="sidenav-trigger">
+
+					<a href="#home" class="brand-logo"> <i class="material-icons large ">account_balance</i> Core Banking API </a>
+
+					<a href="#home" data-target="mobile-nav" class="sidenav-trigger">
+
 					<i class="material-icons">menu</i>
+
 					</a>
+
 					<ul class="right hide-on-med-and-down">
+
 						<li>
-							<a href=#home">Home</a>
+
+							<a href="#home">Home</a>
+
 						</li>
+
 						<li>
-							<a href=#home">Search</a>
+
+							<a href="#services">Services Available</a>
+
 						</li>
+
 						<li>
-							<a href=#home">Pics</a>
+
+							<a href="#home">Technologies used</a>
+
 						</li>
-						<li>
-							<a href=#home">About</a>
-						</li>
-						<li>
-							<a href=#home">Contact</a>
-						</li>
+
 					</ul>
+
 				</div>
+
 			</div>
 
+
 		</nav>
+
 	</div>
+
 	<ul class="sidenav" id="mobile-nav">
-						<li>
-							<a href=#home">Home</a>
-						</li>
-						<li>
-							<a href=#home">Search</a>
-						</li>
-						<li>
-							<a href=#home">Pics</a>
-						</li>
-						<li>
-							<a href=#home">About</a>
-						</li>
-						<li>
-							<a href=#home">Contact</a>
-						</li>
+
+		<li>
+
+			<a href="#home">Home</a>
+
+		</li>
+						
+		<li>
+
+			<a href="#services">Services Available</a>
+
+		</li>
+
+		<li>
+
+			<a href="#home">Technologies used</a>
 	
-						</ul>
- 	<section class="slider">
+		</li>
+		
+							
+	</ul>
+
+
+
+ <section class="slider">
+
     <ul class="slides">
+
       
       <li>
-        <img src="https://storage.googleapis.com/paybase-website/blog/payment-gateway.jpg"> <!-- random image -->
+
+        	<img src="https://qualityinspection.org/wp-content/uploads/2012/01/HowtoPayChineseSuppliersbyBankTransferTT.jpg"> <!--https://storage.googleapis.com/paybase-website/blog/payment-gateway.jpg random image -->
+	
         <div class="caption right-align">
-          <h2>Left Aligned Caption</h2>
-          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-        </div>
-      </li>
+
+          		<h2 class="black-text">Core Banking API for Fintech Integration</h2>
+
+	               <h5 class="light light-blue-text text-lighten-3">Here's our small slogan.</h5>
+
+	        </div>
+
+      	    </li>
+
   
-    </ul>
-  </div>
+   </ul>
+
+  </section>
+
+
+<section class="section section-icons grey lighten-4 center scrollspy" id="services">
+	<div class="container">
+	<div style="width:200px"></div>
+		<div class="row">
+		
+			<div class="col s12 m6">
+				<div class="card-panel">
+					<i class="material-icons large teal-text">recent_actors</i>
+					<h4>Register here</h4>
+					<a href="/own.html">Click here to register for payment features</a>
+				</div>
+			</div>
+			<div class="col s12 m6">
+				<div class="card-panel">
+					<i class="material-icons large teal-text">remove_circle</i>
+					<h4>Deregister</h4>
+					<a href="deregister.html">Click here to stop using services</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">	
+			<div class="col s12 m6">
+				<div class="card-panel">
+					<i class="material-icons large teal-text">payment</i>
+					<h4>Payment Authorization</h4>
+					<a href="pay.html">Click here to authorize your payments</a>
+				</div>
+			</div>
+			<div class="col s12 m6">
+				<div class="card-panel">
+					<i class="material-icons large teal-text">backspace</i>
+					<h4>Payment reversal</h4>
+					<a href="reversal.html">Click here to reverse your transaction</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
 
 
 
+
+<footer class="section light-blue lighten-1 white-text center">
+	<p class="flow-text">Core Banking Solutions &copy; 2019</p>
+</footer>
 <!--JavaScript at end of body for optimized loading-->
+
           <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 	<script>
+
 	//sidenav
+
 		const sideNav=document.querySelector('.sidenav');
+
 		M.Sidenav.init(sideNav,{});
 
+
+
 	//slider
+	
+	
 	const slider=document.querySelector('.slider');
+
 		M.Slider.init(slider,{indicators:false,height:350,transition:500,interval:6000});
 
+
+
+	//scrollspy
+	 const ss= document.querySelectorAll('.scrollspy');
+	M.ScrollSpy.init(ss,{});
 	</script>
+
     </body>
-  </html>
+ 
+ </html>
