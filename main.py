@@ -64,13 +64,13 @@ class basicRevHandler(tornado.web.RequestHandler):
 class revRequ(tornado.web.RequestHandler):
     def post(self):
         # base_url = 'https://192.86.33.94:19443/cusdereg/AccountNo?acctno='
-        base_url = 'https://192.86.33.94:19443/cbscs/cusdereg?AcctNo='
+        base_url = 'https://192.86.33.94:19443/cuspymtrev/cuspayrev?acctono='
         # 100000001001 is the only working answer
         headers = {'Content-Type': 'application/json'}
-        end_url= base_url+str(self.get_body_argument("accnt"))
+        end_url= base_url+str(self.get_body_argument("accnt"))+"&tranid="++str(self.get_body_argument("trans"))+"&revamt="++str(self.get_body_argument("debit_amt"))
         req = requests.get(end_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
         json_out = req.json()
-        self.render("static/genericresp.html",msg=json_out['CSDGRES']['CSRGRES']['MESSAGES'])
+        self.render("static/genericresp.html",msg=json_out['CSREVRES']['CSREVRES']['MESSAGES'],cname=json_out['CSREVRES']['CSREVRES']['CUSTOMER_NAME'],hbal=json_out['CSREVRES']['CSREVRES']['HOLD_BALANCE'],lbal=json_out['CSREVRES']['CSREVRES']['LEDGER_BL'],bal=json_out['CSREVRES']['CSREVRES']['AVAILABLE_BALANCE'],cid=json_out['CSREVRES']['CSREVRES']['CUSTOMER_ID'],credamt=json_out['CSREVRES']['CSREVRES']['CREDIT_AMOUNT_RES'],tid=json_out['CSREVRES']['CSREVRES']['TRANSACTIONS_ID'],date=json_out['CSREVRES']['CSREVRES']['SYS_DATE'],time=json_out['CSREVRES']['CSREVRES']['SYS_TIME'])
 
 # class resourceRequestHandler(tornado.web.RequestHandler):
 #     def get(self, id):
