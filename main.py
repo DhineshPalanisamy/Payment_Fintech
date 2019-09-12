@@ -25,7 +25,7 @@ class regRequ(tornado.web.RequestHandler):
         end_url= base_url+str(self.get_body_argument("accnt"))
         req = requests.get(end_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
         json_out = req.json()
-        self.render("static/genericresp.html",msg=json_out['WS_MESSAGE']['WS_MESSAGE'])
+        self.render("static/genericresp.html",msg=json_out['CSRGRES']['CSRGRES']['MESSAGES'])
 
 class basicDeRequestHandler(tornado.web.RequestHandler):
     def get(self):
@@ -48,14 +48,14 @@ class basicPayHandler(tornado.web.RequestHandler):
 
 class payRequ(tornado.web.RequestHandler):
     def post(self):
-        # base_url = 'https://192.86.33.94:19443/cusdereg/AccountNo?acctno='
-        base_url = 'https://192.86.33.94:19443/cbscs/cusdereg?AcctNo='
+        # base_url = 'https://192.86.33.94:19443/cuspymtauth/cuspay?debitamt='
+        base_url = 'https://192.86.33.94:19443/cuspymtauth/cuspay?debitamt='
         # 100000001001 is the only working answer
         headers = {'Content-Type': 'application/json'}
-        end_url= base_url+str(self.get_body_argument("accnt"))
+        end_url= base_url+str(self.get_body_argument("debit_amt"))+"&acctno="+str(self.get_body_argument("accnt"))
         req = requests.get(end_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
         json_out = req.json()
-        self.render("static/genericresp.html",msg=json_out['CSDGRES']['CSRGRES']['MESSAGES'])
+        self.render("static/genericresp.html",msg=json_out['CSPYRES']['CSPYRES']['MESSAGES'])
 
 class basicRevHandler(tornado.web.RequestHandler):
     def get(self):
