@@ -1,272 +1,126 @@
+<!DOCTYPE html>
+
 <html>
-
-
 
   <head>
 
-
-
    <!--Import Google Icon Font-->
-
-
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
-
    <!-- Compiled and minified CSS -->
-
-
 
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
 
 
 
-
-
    <!--Let browser know website is optimized for mobile-->
 
-
- 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 
 <style>
-
-
-body 
-{
+body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
   }
 
-
-  
-main {
+  main {
     flex: 1 0 auto;
   }
-
 </style>
-
-
 
 
 
 </head>
 
 
+ <body>
+  <header>
+  <nav class="light-blue lighten-1" role="navigation">
 
- 
-<body>
-
-
- 
- <nav class="light-blue lighten-1" role="navigation">
-
-
-
-  <div class="nav-wrapper container">
-
-	<a id="logo-container" href="/" class="brand-logo">Core Banking Solutions</a>
-
- 
-   </div>
-
-
+  <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Core Banking Solutions</a>
+    </div>
 
   </nav>
-
-
-
-<div style="height:20px">
-</div>
-
-
-<div class="container">
-
-
-
-	{% block transid %}
-	<div class="row left" >
-	<form action="" method="POST">
-		<div class="input-field">
-			
-			<input disabled value={{ tid }} id="disabled" type="text" class="validate red-text" >
-
-
-			<label > Date</label>
-
-
-		</div>
-
-
-	</form>
-	</div>
-	{% end %}
-	<div class="row right" style="width:20,height:20">
-
-
-	<form action="" method="POST">
-
-
-		<div class="input-field">
-
-
-			<input disabled value={{ date }} id="disabled" type="text" class="validate teal-text" >
-
-
-			<label > Date</label>
-
-
-		</div>
-
-
-		
-<div class="input-field">
-
-
-			<input disabled value= {{ time }} id="disabled" type="text" class="validate teal-text">
-
-
-			<label> Time</label>
-
-
-		</div>
-
-
-	</form>
-
-	</div>
+  </header>
+<main id="allthings" >
+<div style="height:70px"></div>
+<div class="container" >
 
 	<div class="row">
-
-
 		<div class="col s12 m12">
-
-
 			<div class="card-panel center">
-
-
 				<!-- <i class=" medium material-icons">recent_actors</i> -->
-
-
-				<h4 class="purple-text text-darken-5">{{ msg }}</h4>
-
+				<h4>{{ msg }}</h4>
 				<!-- <p> Register here for tassle free payments!!</p> -->
-
-
 			</div>
-
-
 		</div>
-
-
   	</div>
 
-
-
-<div style="height:20px"></div>
-
-
-
-<div class="row" style="width:20,height:20">
-
-
-	<form action="" method="POST">
-
-
-		<div class="input-field left">
-
-			{% block custname %}
-			<input disabled value="Customer Name" id="disabled" type="text" class="validate teal-text" >
-
-
-			<label > Customer Name</label>
-
-	
-			{% end %}
-		</div>
-
-	
-	
-	<div class="input-field right text-red text-darken-5">
-
-	
-			{% block custid %}
-			<input disabled value="Customer ID" id="disabled" type="text" class="validate teal-text">
-
-	
-			<label> Customer ID</label>
-
-
-			{% end %}
-		</div>
-
-
-	</form>
+    {% if bloc=="regreq" and msg != "CUSTOMER IS ALREADY REGISTERED" %}
+    <div class="row">
+      <div class="col s12 m12">
+        <div class="card-panel center">
+          <!-- <h4>{{ cid }}</h4> -->
+          <div class="row">
+            <div class="input-field col s6">
+              <input disabled value="{{ cid }}" id="first_name2" type="text" class="validate">
+              <label class="active" for="first_name2">Cust ID</label>
+            </div>
+            <div class="input-field col s6">
+              <input disabled value="{{ cname }}" id="first_name2" type="text" class="validate">
+              <label class="active" for="first_name2">Cust Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input disabled value="{{ date }}" id="first_name2" type="text" class="validate">
+              <label class="active" for="first_name2">Register date</label>
+            </div>
+            <div class="input-field col s6">
+              <input disabled value="{{ time }}" id="first_name2" type="text" class="validate">
+              <label class="active" for="first_name2">Register time</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+  	{% end %}
 </div>
-</div>
-
-<div class="container center">
-{% block payrelated %}
-		<table class="striped responsive-table" style="width:200px;">
-			
-		 
-			<table>
-        <thead>
-          <tr>
-              <th>Account and Payment Details</th>
-              
-          </tr>
-	<tr></tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Hold-Balance</td>
-            <td> {{ hbal }}</td>
-           
-          </tr>
-          <tr>
-            <td>Ledger Balance</td>
-            <td> {{ }}</td>
-            
-          </tr>
-          <tr>
-            <td>Available balance</td>
-            <td> {{ }} </td>
-           
-          </tr>
-	<tr>
-	{% block dorc %}
-            <td>Debited or credited to be responsive Amount</td>
-	{% end %}
-            <td> {{ }}</td>
-            
-          </tr>
-          
-        </tbody>
-      </table>
-	
-
-			{% end %}
-</div>
-
-<footer class="section light-blue lighten-1 white-text center">
-	<p class="flow-text">Core Banking Solutions &copy; 2019</p>
-</footer>
-
- <!-- Compiled and minified JavaScript -->
-
-
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-
+</main>
+<div style="height:170px"></div>
+<footer class="page-footer light-blue lighten-1" style="position:fixed;bottom:0;left:0;width:100%;">
+  <div id="foot">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Disclaimer</h5>
+                <p class="grey-text text-lighten-4">Copyrighted content</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2019 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+          </div>
+        </footer>
+   <!-- Compiled and minified JavaScript -->
+   <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="text/javascript">
+   // document.getElementById("allthings")
+   $('#allthings').css('paddingBottom', $('#foot').height());
+  console.log($('#foot').height());
+</script>
  </body>
-
 
 </html>
