@@ -25,7 +25,7 @@ class regRequ(tornado.web.RequestHandler):
         end_url= base_url+str(self.get_body_argument("accnt"))
         req = requests.get(end_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
         json_out = req.json()
-        self.render("static/genericresp.html",msg=json_out['CSRGRES']['CSRGRES']['MESSAGES'])
+        self.render("static/genericresp.html",msg=json_out['CSRGRES']['CSRGRES']['MESSAGES'],cname=json_out['CSRGRES']['CSRGRES']['CUSTOMER_NAME'],cid=json_out['CSRGRES']['CSRGRES']['CUSTOMER_ID'],date=json_out['CSRGRES']['CSRGRES']['SYS_DATE'],time=json_out['CSRGRES']['CSRGRES']['SYS_TIME'])
 
 class basicDeRequestHandler(tornado.web.RequestHandler):
     def get(self):
@@ -40,7 +40,7 @@ class deRegRequ(tornado.web.RequestHandler):
         end_url= base_url+str(self.get_body_argument("accnt"))
         req = requests.get(end_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
         json_out = req.json()
-        self.render("static/genericresp.html",msg=json_out['CSDGRES']['CSRGRES']['MESSAGES'])
+        self.render("static/genericresp.html",msg=json_out['CSDGRES']['CSRGRES']['MESSAGES'],,cname=json_out['CSRGRES']['CSRGRES']['CUSTOMER_NAME'],cid=json_out['CSRGRES']['CSRGRES']['CUSTOMER_ID'],date=json_out['CSRGRES']['CSRGRES']['SYS_DATE'],time=json_out['CSRGRES']['CSRGRES']['SYS_TIME'])
 
 class basicPayHandler(tornado.web.RequestHandler):
     def get(self):
@@ -55,11 +55,11 @@ class payRequ(tornado.web.RequestHandler):
         end_url= base_url+str(self.get_body_argument("debit_amt"))+"&acctno="+str(self.get_body_argument("accnt"))
         req = requests.get(end_url, headers=headers, auth=('ibmuser', 'ibmuser'), verify=False)
         json_out = req.json()
-        self.render("static/genericresp.html",msg=json_out['CSPYRES']['CSPYRES']['MESSAGES'])
+        self.render("static/genericresp.html",msg=json_out['CSPYRES']['CSPYRES']['MESSAGES'],cname=json_out['CSPYRES']['CSPYRES']['CUSTOMER_NAME'],hbal=json_out['CSPYRES']['CSPYRES']['HOLD_BALANCE'],lbal=json_out['CSPYRES']['CSPYRES']['LEDGER_BL'],bal=json_out['CSPYRES']['CSPYRES']['AVAILABLE_BALANCE'],cid=json_out['CSPYRES']['CSPYRES']['CUSTOMER_ID'],damt=json_out['CSPYRES']['CSPYRES']['DEBIT_AMOUNT_RES'],tid=json_out['CSPYRES']['CSPYRES']['TRANSACTION_ID'],date=json_out['CSPYRES']['CSPYRES']['SYS_DATE'],time=json_out['CSPYRES']['CSPYRES']['SYS_TIME'])
 
 class basicRevHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("static/pay.html")
+        self.render("static/reversal.html")
 
 class revRequ(tornado.web.RequestHandler):
     def post(self):
