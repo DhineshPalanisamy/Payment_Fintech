@@ -244,6 +244,54 @@ body {
 
 
 </div>
+{ % if bloc =="payauth" and msg!= "ACCOUNT DOES NOT EXIT WITH BANK" %}
+<div class="container center">
+
+		<table class="striped responsive-table" style="width:200px;">
+			
+		 
+		
+        <thead>
+          <tr>
+              <th>Account and Payment Details</th>
+              
+          </tr>
+	<tr></tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Hold-Balance</td>
+            <td> {{ hbal }}</td>
+           
+          </tr>
+          <tr>
+            <td>Ledger Balance</td>
+            <td> {{ lbal }}</td>
+            
+          </tr>
+          <tr>
+            <td>Available balance</td>
+            <td> {{ bal }} </td>
+           
+          </tr>
+	<tr>
+	
+            <td>Debited Amount</td>
+	
+            <td> {{ damt }}</td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+	
+
+			
+</div>
+
+
+{% end %}
 
 </main>
 
