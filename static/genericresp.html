@@ -69,7 +69,7 @@ body {
 
 <div class="container" >
 
-{% bloc="payauth" and msg!= "ACCOUNT DOES NOT EXIT WITH BANK"  %}
+{% if bloc == "payauth" and msg!= "ACCOUNT DOES NOT EXIT WITH BANK"  %}
 	<div class="row left" >
 	<form action="" method="POST">
 		<div class="input-field">
