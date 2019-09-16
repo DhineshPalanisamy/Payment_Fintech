@@ -37,80 +37,270 @@ body {
 </head>
 
 
+
  <body>
+
   <header>
+
   <nav class="light-blue lighten-1" role="navigation">
 
-  <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Core Banking Solutions</a>
+
+  <div class="nav-wrapper container">
+<a id="logo-container" href="/" class="brand-logo">Core Banking Solutions</a>
+
     </div>
 
+
   </nav>
+
   </header>
+
 <main id="allthings" >
+
 <div style="height:70px"></div>
+
 <div class="container" >
 
-	<div class="row">
-		<div class="col s12 m12">
-			<div class="card-panel center">
-				<!-- <i class=" medium material-icons">recent_actors</i> -->
-				<h4>{{ msg }}</h4>
-				<!-- <p> Register here for tassle free payments!!</p> -->
-			</div>
+
+
+<!-- div and condition for dispalying transaction id.......only for payment -->
+
+
+	{% if bloc == "payauth" and msg == "AMOUNT DEBITED SUCCESSFULLY"  %}
+
+	<div class="row left" >
+	<form action="" method="POST">
+
+		<div class="input-field">
+
+			<input disabled value= "{{ tid }}" id="disabled" type="text" class="validate red-text" >
+
+
+
+			<label class ="red-text"> Transaction ID</label>
+
+
+
 		</div>
+
+
+
+	</div>
+
+	{% end %}
+
+
+
+
+<!-- the div for date and time response which is displayed always irrespective of conditions -->
+
+	<div class="row right" style="width:20,height:20">
+
+
+
+		<form action="" method="POST">
+
+
+
+			<div class="input-field">
+
+
+
+				<input disabled value= "{{ date }}" id="disabled" type="text" class="validate teal-text" >
+
+
+
+				<label class="active" for="disabled" > Date</label>
+
+
+
+			</div>
+
+
+
+			
+<div class="input-field">
+
+
+
+				<input disabled value= "{{ time }}" id="disabled" type="text" class="validate teal-text">
+
+
+
+				<label class="active" for="disabled"> Time</label>
+
+
+
+			</div>
+
+
+
+		</form>
+
+
+	</div>
+
+
+
+<!-- div for response message displayed always -->
+
+
+
+	<div class="row">
+
+		<div class="col s12 m12">
+
+			<div class="card-panel center">
+
+				<!-- <i class=" medium material-icons">recent_actors</i> -->
+
+				<h4 class="purple-text text-darken-5">{{ msg }}</h4>
+
+				<!-- <p> Register here for tassle free payments!!</p> -->
+
+			</div>
+
+		</div>
+
   	</div>
 
-    {% if bloc=="regreq" and msg != "CUSTOMER IS ALREADY REGISTERED" %}
-    <div class="row">
-      <div class="col s12 m12">
-        <div class="card-panel center">
-          <!-- <h4>{{ cid }}</h4> -->
-          <div class="row">
-            <div class="input-field col s6">
-              <input disabled value="{{ cid }}" id="first_name2" type="text" class="validate">
-              <label class="active" for="first_name2">Cust ID</label>
-            </div>
-            <div class="input-field col s6">
-              <input disabled value="{{ cname }}" id="first_name2" type="text" class="validate">
-              <label class="active" for="first_name2">Cust Name</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
-              <input disabled value="{{ date }}" id="first_name2" type="text" class="validate">
-              <label class="active" for="first_name2">Register date</label>
-            </div>
-            <div class="input-field col s6">
-              <input disabled value="{{ time }}" id="first_name2" type="text" class="validate">
-              <label class="active" for="first_name2">Register time</label>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
+
+
+<!-- inside container where conditional dispaly -->
+
+<!-- conditions for reg and dereg i.e. name and id displayed -->
+
+
+	{% if (bloc== "regreq" and msg == "CUSTOMER IS ALREADY REGISTERED") or (bloc=="regreq" and msg == "CUSTOMER REGISTERED SUCESSFULLY") or (bloc=="deregreq" and msg == "CUSTOMER DEREGISTERED SUCESSFULLY") or (bloc=="deregreq" and msg == "ACCT STS NOT REG TO DEREG IS")  %}
+
+    	<div class="row">
+
+      		<div class="col s12 m12">
+
+        		<div class="card-panel center">
+
+          		<!-- <h4>{{ cid }}</h4> -->
+ 
+         			<div class="row">
+
+            				<div class="input-field col s6">
+
+              					<input disabled value="{{ cid }}" id="first_name2" type="text" class="validate teal-text">
+
+              					<label class="active" for="first_name2">Cust ID</label>
+
+           				 </div>
+ 
+           				<div class="input-field col s6">
+
+              					<input disabled value="{{ cname }}" id="first_name2" type="text" class="validate teal-text">
+
+              					<label class="active" for="first_name2">Cust Name</label>
+
+            				</div>
+
+          			</div>
+
+          		</div>
+
+      		</div>
+
+ 	</div>
+
   	{% end %}
+
+<!-- container end-->
 </div>
+
+
+
+<!-- conditions for payment auth i.e cname cid, lbal,hbal,bal,damt -->
+
+
+
+
+	{% if (bloc=="payauth" and msg == "AMOUNT DEBITED SUCCESSFULLY") or (bloc=="payauth" and msg == "AMOUNT IS GREATER THAN PAYMENT LMIT") or (bloc =="payauth" and msg == "ACCOUNT DOESNT HAVE SUFFIECIENT FUND") %}
+
+<div class="container center">
+
+
+	<table class="striped responsive-table " style="width:800px;">
+
+	<thead>
+
+        <tr>
+
+        	<th>Account and Payment Details</th>
+
+        </tr>
+
+	<tr></tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr>
+
+            <td>Hold-Balance</td>
+
+            <td> {{ hbal }}</td>
+
+          </tr>
+ 
+         <tr>
+ 
+           <td>Ledger Balance</td>
+
+            <td> {{ lbal }}</td>
+ 
+         </tr>
+ 
+         <tr>
+
+            <td>Available balance</td>
+
+            <td> {{ bal }} </td>
+
+         </tr>
+
+	<tr>
+
+	
+    <td>Debited Amount</td>
+
+	
+    <td> {{ damt }}</td>
+ 
+        </tr>
+ 
+         </tbody>
+
+        </table>
+
+
+
+</div>
+
+
+
+	{% end %}
+
+
+
 </main>
+
 <div style="height:170px"></div>
-<footer class="page-footer light-blue lighten-1" style="position:fixed;bottom:0;left:0;width:100%;">
-  <div id="foot">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Disclaimer</h5>
-                <p class="grey-text text-lighten-4">Copyrighted content</p>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2019 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-          </div>
-          </div>
-        </footer>
-   <!-- Compiled and minified JavaScript -->
+
+
+
+
+<footer class="section light-blue lighten-1 white-text center">
+
+	<p class="flow-text">Core Banking Solutions &copy; 2019</p>
+</footer>
+  <!-- Compiled and minified JavaScript -->
    <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -124,3 +314,4 @@ body {
  </body>
 
 </html>
+
