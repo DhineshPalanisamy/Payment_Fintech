@@ -83,7 +83,7 @@ if __name__ == "__main__":
         (r"/paymentauth", basicPayHandler),
         (r"/payrequ", payRequ),
         (r"/paymentrevauth", basicRevHandler),
-        (r"/payrevrequ", revRequ),
+        (r"/revRequ", revRequ),
     ])
 
     app.listen(port)
