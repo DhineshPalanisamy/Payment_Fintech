@@ -66,7 +66,9 @@ body {
 <!-- div and condition for dispalying transaction id.......only for payment -->
 
 
-	{% if bloc == "payauth" and msg == "AMOUNT DEBITED SUCCESSFULLY"  %}
+	{% if (bloc == "payauth" and msg == "AMOUNT DEBITED SUCCESSFULLY") or (bloc == "payrev" and msg =="AMOUNT REVERSED SUCCESSFULLY") or (bloc == "payrev" and msg =="AMOUNT REVERSAL UNSUCCESSFULL")  %}
+
+
 
 	<div class="row left" >
 	<form action="" method="POST">
@@ -286,6 +288,79 @@ body {
 
 
 	{% end %}
+
+
+
+<!-- condition for payment reversal -->
+    { % if (bloc =="payrev" and msg == "AMOUNT REVERSAL UNSUCCESSFULL") or (bloc =="payrev" and msg == "AMOUNT REVERSED SUCCESSFULLY") %}
+
+<div class="container center">
+
+
+	<table class="striped responsive-table " style="width:800px;">
+
+	<thead>
+
+        <tr>
+
+        	<th>Account and Payment Details</th>
+
+        </tr>
+
+	<tr></tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr>
+
+            <td>Hold-Balance</td>
+
+            <td> {{ hbal }}</td>
+
+          </tr>
+ 
+         <tr>
+ 
+           <td>Ledger Balance</td>
+
+            <td> {{ lbal }}</td>
+ 
+         </tr>
+ 
+         <tr>
+
+            <td>Available balance</td>
+
+            <td> {{ bal }} </td>
+
+         </tr>
+
+	<tr>
+
+	
+    <td>Credited Amount</td>
+
+	
+    <td> {{ credamt }}</td>
+ 
+        </tr>
+ 
+         </tbody>
+
+        </table>
+
+
+
+</div>
+
+
+
+    {% end %}
+
+
 
 
 
