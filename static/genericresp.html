@@ -211,7 +211,6 @@ body {
 
   	{% end %}
 
-<!-- container end-->
 </div>
 
 
@@ -292,7 +291,8 @@ body {
 
 
 <!-- condition for payment reversal -->
-    { % if (bloc =="payrev" and msg == "AMOUNT REVERSAL UNSUCCESSFULL") or (bloc =="payrev" and msg == "AMOUNT REVERSED SUCCESSFULLY") %}
+
+    {% if (bloc =="payrev" and msg == "AMOUNT REVERSAL UNSUCCESSFULL") or (bloc =="payrev" and msg == "AMOUNT REVERSED SUCCESSFULLY") %}
 
 <div class="container center">
 
@@ -357,8 +357,8 @@ body {
 </div>
 
 
-
     {% end %}
+
 
 
 
