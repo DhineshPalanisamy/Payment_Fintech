@@ -95,7 +95,7 @@ body {
 
 
 <!-- the div for date and time response which is displayed always irrespective of conditions -->
-
+    {% if (bloc == regreq) or (bloc == deregreq) or (bloc == "payauth" and msg == "AMOUNT DEBITED SUCCESSFULLY") or (bloc =="payrev" and msg == "AMOUNT CREDITED SUCCESFULL") %}
 	<div class="row right" style="width:20,height:20">
 
 
@@ -141,6 +141,7 @@ body {
 
 
 	</div>
+	{% end %}
 
 
 
@@ -173,7 +174,7 @@ body {
 <!-- conditions for reg and dereg i.e. name and id displayed -->
 
 
-	{% if (bloc== "regreq" and msg == "CUSTOMER IS ALREADY REGISTERED") or (bloc=="regreq" and msg == "CUSTOMER REGISTERED SUCESSFULLY") or (bloc=="deregreq" and msg == "CUSTOMER DEREGISTERED SUCESSFULLY") or (bloc=="deregreq" and msg == "ACCT STS NOT REG TO DEREG IS")  %}
+	{% if (bloc== "regreq" and msg == "CUSTOMER IS ALREADY REGISTERED") or (bloc=="regreq" and msg == "CUSTOMER REGISTERED SUCESSFULLY") or (bloc=="deregreq" and msg == "CUSTOMER DEREGISTERED SUCESSFULLY") or (bloc=="deregreq" and msg == "CUSTOMER IS NOT REGISTERED")  %}
 
     	<div class="row">
 
@@ -220,7 +221,7 @@ body {
 
 
 
-	{% if (bloc=="payauth" and msg == "AMOUNT DEBITED SUCCESSFULLY") or (bloc=="payauth" and msg == "AMOUNT IS GREATER THAN PAYMENT LMIT") or (bloc =="payauth" and msg == "ACCOUNT DOESNT HAVE SUFFIECIENT FUND") %}
+	{% if (bloc=="payauth" and msg == "AMOUNT DEBITED SUCCESSFULLY") %}
 
 <div class="container center">
 
