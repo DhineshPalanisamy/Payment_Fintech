@@ -1,2 +1,2 @@
-APP_FILE='main.py'
-ENABLE_INIT_WRAPPER='true'
+APP_FILE=main.py
+ENABLE_INIT_WRAPPER=true
