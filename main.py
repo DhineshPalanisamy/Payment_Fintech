@@ -8,7 +8,7 @@ import tornado.autoreload
 # On IBM Cloud Cloud Foundry, get the port number from the environment variable PORT
 # When running this app on the local machine, default the port to 8000
 port = int(os.getenv('PORT', 8000))
-host=int(os.getenv('IP', 0.0.0.0))
+host = int(os.getenv('IP', 0.0.0.0))
 
 class landingPage(tornado.web.RequestHandler):
     def get(self):
