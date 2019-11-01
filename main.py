@@ -91,5 +91,6 @@ if __name__ == "__main__":
     app.listen(port)
     # TODO remove in prod
     tornado.autoreload.start()
+    print(port)
     print("I'm listening on port specified")
     tornado.ioloop.IOLoop.current().start()
