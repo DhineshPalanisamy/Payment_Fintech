@@ -11,10 +11,12 @@ port = int(os.getenv('PORT', 8000))
 
 class landingPage(tornado.web.RequestHandler):
     def get(self):
+        print("I'm listening on port specified")
         self.render("static/indexx.html")
 
 class basicRequestHandler(tornado.web.RequestHandler):
     def get(self):
+        print("I'm listening on port specified")
         self.render("static/register.html")
 
 class regRequ(tornado.web.RequestHandler):
