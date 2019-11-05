@@ -22,11 +22,11 @@ class basicRequestHandler(tornado.web.RequestHandler):
 
 class regRequ(tornado.web.RequestHandler):
     def post(self):
-        base_url = 'https://api.us.apiconnect.ibmcloud.com/cloud-microservices-unit-cma-space/sb/customeractivitypoc/registerCustomers?accountNo='
+        base_url = 'https://api.eu-gb.apiconnect.appdomain.cloud/m1ganeshtcscom1543928228162-dev/sb/payments/custReg'
         # 100000001001 is the only working answer
         headers = {'Content-Type': 'application/json'}
-        end_url= base_url+str(self.get_body_argument("accnt"))
-        req = requests.get(end_url, headers=headers, auth=('759e740e-e016-416f-a714-a23eed6e4b33', 'A6cH6bF7sE7mR5hI0oY3xK0fG8jH3lP7qI4aS5bR4hF2jV5kT6'), verify=False)
+        #end_url= base_url+str(self.get_body_argument("accnt"))
+        req = requests.get(base_url, headers=headers, auth=('759e740e-e016-416f-a714-a23eed6e4b33', 'A6cH6bF7sE7mR5hI0oY3xK0fG8jH3lP7qI4aS5bR4hF2jV5kT6'), verify=False)
         json_out = req.json()
         self.render("static/genericresp.html",msg=json_out['CSRGRES']['CSRGRES']['MESSAGES'],cname=json_out['CSRGRES']['CSRGRES']['CUSTOMER_NAME'],cid=json_out['CSRGRES']['CSRGRES']['CUSTOMER_ID'],date=json_out['CSRGRES']['CSRGRES']['SYS_DATE'],time=json_out['CSRGRES']['CSRGRES']['SYS_TIME'],bloc="regreq")
 
