@@ -21,7 +21,7 @@ class basicRequestHandler(tornado.web.RequestHandler):
         self.render("static/register.html")
 
 class regRequ(tornado.web.RequestHandler):
-    def post(self):
+    def get(self):
         base_url = 'https://api.eu-gb.apiconnect.appdomain.cloud/m1ganeshtcscom1543928228162-dev/sb/payments/custReg'
         # 100000001001 is the only working answer
         headers = {'Content-Type': 'application/json'}
