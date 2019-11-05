@@ -28,6 +28,8 @@ class regRequ(tornado.web.RequestHandler):
         #end_url= base_url+str(self.get_body_argument("accnt"))
         req = requests.get(base_url, headers=headers, auth=('759e740e-e016-416f-a714-a23eed6e4b33', ''), verify=False)
         json_out = req.json()
+        print("json")
+        print(json_out)
         self.render("static/genericresp.html",msg=json_out['CSRGRES']['CSRGRES']['MESSAGES'],cname=json_out['CSRGRES']['CSRGRES']['CUSTOMER_NAME'],cid=json_out['CSRGRES']['CSRGRES']['CUSTOMER_ID'],date=json_out['CSRGRES']['CSRGRES']['SYS_DATE'],time=json_out['CSRGRES']['CSRGRES']['SYS_TIME'],bloc="regreq")
 
 class basicDeRequestHandler(tornado.web.RequestHandler):
